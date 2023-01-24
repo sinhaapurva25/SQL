@@ -19,11 +19,11 @@ CREATE TABLE albums (
 
 CREATE TABLE songs(
 	id INT NOT NULL auto_increment,
-    primary key(id),
-    name VARCHAR(255) NOT NULL,
-    length float NOT NULL,
-    album_id INT NOT NULL,
-    foreign key(album_id) references albums(id)
+  primary key(id),
+  name VARCHAR(255) NOT NULL,
+  length float NOT NULL,
+  album_id INT NOT NULL,
+  foreign key(album_id) references albums(id)
 );
 
 INSERT INTO bands(id,name) VALUES (1,'Seventh Wonder');
