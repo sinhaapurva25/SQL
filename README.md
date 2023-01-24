@@ -1,2 +1,2 @@
-# HackerRank
-This repo contains my solutions to HackerRank problems.
+# SQL
+This repo contains SQL topics I have learnt/practised.
