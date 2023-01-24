@@ -58,12 +58,16 @@
 
 -- Solution
 /*
-CREATE DATABASE X;
-USE X;
+drop table Ads;
+drop database LeetCode;
+
+CREATE DATABASE LeetCode;
+USE LeetCode;
 CREATE TABLE ADS(
 ad_id int,
 user_id int,
-action VARCHAR(255));
+action VARCHAR(255),
+Primary key (ad_id, user_id));
 INSERT INTO ADS(ad_id,user_id,action) VALUES(1,1,'Clicked');
 INSERT INTO ADS(ad_id,user_id,action) VALUES(2,2,'Clicked');
 INSERT INTO ADS(ad_id,user_id,action) VALUES(3,3,'Viewed');
@@ -74,7 +78,7 @@ INSERT INTO ADS(ad_id,user_id,action) VALUES(3,5,'Clicked');
 INSERT INTO ADS(ad_id,user_id,action) VALUES(1,4,'Viewed');
 INSERT INTO ADS(ad_id,user_id,action) VALUES(2,11,'Viewed');
 INSERT INTO ADS(ad_id,user_id,action) VALUES(1,2,'Clicked');
-
+*/
 SELECT ad_id,COUNT(*) as a
 		FROM Ads
 		WHERE action='Clicked'
@@ -85,13 +89,15 @@ SELECT ad_id,COUNT(*) as t
 		WHERE action='Clicked' or action='Viewed'
 		GROUP BY ad_id;
 */
-SELECT AD1.ad_id,(AD1.a/AD2.t)*100
-FROM (SELECT ad_id,COUNT(*) as a
-		FROM Ads
-		WHERE action='Clicked'
-		GROUP BY ad_id) AD1
-JOIN (SELECT ad_id,COUNT(*) as t
-		FROM Ads
-		WHERE action='Clicked' or action='Viewed'
-		GROUP BY ad_id) AD2
-ON AD2.ad_id = AD1.ad_id;
+-- SELECT AD1.ad_id,(AD1.a/AD2.t)*100
+-- FROM (SELECT ad_id,COUNT(*) as a
+-- 		FROM Ads
+-- 		WHERE action='Clicked'
+-- 		GROUP BY ad_id) AD1
+-- JOIN (SELECT ad_id,COUNT(*) as t
+-- 		FROM Ads
+-- 		WHERE action='Clicked' or action='Viewed'
+-- 		GROUP BY ad_id) AD2
+-- ON AD2.ad_id = AD1.ad_id;
+
+from Ads select ad_id, sum(*) over(order by action)
